@@ -27,15 +27,24 @@ const createAndSavePerson = (done) => {
     age: 20,
     favoriteFoods: ["rice", "swallow"],
   });
-  newPerson.save().then((data) => {
-    done(null, data);
-  }).catch(err => {
-    done(err);
-  });
+  newPerson
+    .save()
+    .then((data) => {
+      done(null, data);
+    })
+    .catch((err) => {
+      done(err);
+    });
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
-  done(null /*, data*/);
+  Person.create(arrayOfPeople)
+    .then((data) => {
+      done(null, data);
+    })
+    .catch((err) => {
+      done(err);
+    });
 };
 
 const findPeopleByName = (personName, done) => {
