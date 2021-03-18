@@ -31,14 +31,11 @@ const createAndSavePerson = (done) => {
   });
   newPerson.save((err, data) => {
     if (err) {
-      console.log(err);
+      console.error(err);
     }
-    if (data) {
-      console.log(data);
-    }
-  });
 
-  done(null, data);
+    done(null, data);
+  });
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
