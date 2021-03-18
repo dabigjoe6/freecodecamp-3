@@ -136,10 +136,15 @@ const removeById = (personId, done) => {
   });
 };
 
-const removeManyPeople = (done) => {
+const removeManyPeople = async (done) => {
   const nameToRemove = "Mary";
 
-  done(null /*, data*/);
+  try {
+    const res = await Person.remove({ name: nameToRemove });
+    done(null, res);
+  } catch (e) {
+    done(e);
+  }
 };
 
 const queryChain = (done) => {
