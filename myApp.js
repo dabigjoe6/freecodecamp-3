@@ -10,8 +10,6 @@ try {
   console.warn(e);
 }
 
-let Person;
-
 let personSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -21,7 +19,7 @@ let personSchema = new mongoose.Schema({
   favoriteFoods: [String],
 });
 
-Person = new mongoose.model("Person", personSchema);
+let Person = new mongoose.model("Person", personSchema);
 
 const createAndSavePerson = (done) => {
   const newPerson = new Person({
@@ -30,10 +28,7 @@ const createAndSavePerson = (done) => {
     favoriteFoods: ["rice", "swallow"],
   });
   newPerson.save((err, data) => {
-    if (err) {
-      console.error(err);
-    }
-
+    if (err) return console.error(err);
     done(null, data);
   });
 };
