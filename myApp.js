@@ -111,7 +111,7 @@ const findAndUpdate = (personName, done) => {
   const ageToSet = 20;
 
   Person.findOneAndUpdate(
-    { name: personname },
+    { name: personName },
     { age: ageToSet },
     { new: true },
     (err, doc) => {
