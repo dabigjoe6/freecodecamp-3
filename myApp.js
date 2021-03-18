@@ -2,7 +2,10 @@ require("dotenv").config();
 let mongoose = require("mongoose");
 
 try {
-  mongoose.connect(process.env.MONGO_URI);
+  mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
 } catch (e) {
   console.warn(e);
 }
@@ -24,9 +27,10 @@ const createAndSavePerson = (done) => {
     age: 20,
     favoriteFoods: ["rice", "swallow"],
   });
-  newPerson.save((err, data) => {
-    if (err) return console.error(err);
+  newPerson.save().then((data) => {
     done(null, data);
+  }).catch(err => {
+    done(err);
   });
 };
 
